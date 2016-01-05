@@ -1,18 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Data;
 
 namespace ChallongeOBSScoreKeeper
 {
@@ -33,7 +22,12 @@ namespace ChallongeOBSScoreKeeper
             var json = client.MakeRequest("?api_key=dRmpIHLRpgfiepsGWcixpRrettoVeYmSqPw2RJcg");
             JsonSerializer serializer = new JsonSerializer();
             var data = JsonConvert.DeserializeObject<List<Participants>>(json);
-            label.Content = data[0].Participant.name;
+            //label.Content = data[0].Participant.name;
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                playerListView.Items.Add(data[i].Participant.name);
+            }
         }
     }
 

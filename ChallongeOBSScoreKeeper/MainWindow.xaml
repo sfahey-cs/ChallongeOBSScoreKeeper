@@ -8,6 +8,12 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button x:Name="loadButton" Content="Load" HorizontalAlignment="Left" Margin="432,288,0,0" VerticalAlignment="Top" Width="75" Click="loadButton_Click"/>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ListView x:Name="playerListView" HorizontalAlignment="Left" Height="273" VerticalAlignment="Top" Width="497" Margin="10,10,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
