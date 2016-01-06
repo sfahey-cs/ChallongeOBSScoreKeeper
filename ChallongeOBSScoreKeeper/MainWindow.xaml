@@ -16,7 +16,7 @@
             <ColumnDefinition Width="93"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="loadButton" Content="Load" Margin="0,0,15,10" Click="loadButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Grid.Column="2"/>
-        <ListView x:Name="playerListView" Margin="16,10,15,37" Grid.Column="1" Grid.ColumnSpan="2">
+        <ListView x:Name="playerListView" Margin="16,31,15,37" Grid.Column="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -24,5 +24,10 @@
             </ListView.View>
         </ListView>
         <ComboBox x:Name="comboBox" Grid.Column="1" Margin="16,0,2,10" DropDownOpened="comboBox_DropDownOpened" Height="22" VerticalAlignment="Bottom"/>
+        <Menu Margin="0,0,0,289" Grid.Column="1" Grid.ColumnSpan="2" IsMainMenu="True">
+            <MenuItem Header="_File" ClipToBounds="True">
+                <MenuItem Header="_Open" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>

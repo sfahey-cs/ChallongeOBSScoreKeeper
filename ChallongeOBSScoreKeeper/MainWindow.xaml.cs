@@ -17,9 +17,9 @@ namespace ChallongeOBSScoreKeeper
 
         private void loadButton_Click(object sender, RoutedEventArgs e)
         {
-            string endPoint = @"https://api.challonge.com/v1/tournaments/1143489/participants.json";
+            string endPoint = @"https://api.challonge.com/v1/tournaments/" + Window1.tournamentID + "/participants.json";
             var client = new RestClient(endPoint);
-            var json = client.MakeRequest("?api_key=dRmpIHLRpgfiepsGWcixpRrettoVeYmSqPw2RJcg");
+            var json = client.MakeRequest("?api_key="+Window1.apiKey);
             JsonSerializer serializer = new JsonSerializer();
             var data = JsonConvert.DeserializeObject<List<Participants>>(json);
             //label.Content = data[0].Participant.name;
@@ -34,7 +34,7 @@ namespace ChallongeOBSScoreKeeper
         {
             comboBox.Items.Clear();
 
-            string endPointParticipants = @"https://api.challonge.com/v1/tournaments/1143489/participants.json";
+            string endPointParticipants = @"https://api.challonge.com/v1/tournaments/" + Window1.tournamentID + "/participants.json";
             var clientParticipants = new RestClient(endPointParticipants);
             var jsonParticipants = clientParticipants.MakeRequest("?api_key=dRmpIHLRpgfiepsGWcixpRrettoVeYmSqPw2RJcg");
             JsonSerializer serializerParticipants = new JsonSerializer();
@@ -93,6 +93,11 @@ namespace ChallongeOBSScoreKeeper
                     
                 }
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new Window1().Show();
         }
     }
 
