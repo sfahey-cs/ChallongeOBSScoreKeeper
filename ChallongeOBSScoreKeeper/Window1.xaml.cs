@@ -32,6 +32,7 @@ namespace ChallongeOBSScoreKeeper
         private void comboBox_DropDownOpened(object sender, EventArgs e)
         {
             apiKey = textBox.Text;
+            comboBox.Items.Clear();
             string endPoint = @"https://api.challonge.com/v1/tournaments.json";
             var client = new RestClient(endPoint);
             try

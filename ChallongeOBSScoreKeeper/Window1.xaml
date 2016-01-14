@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChallongeOBSScoreKeeper"
         mc:Ignorable="d"
-        Title="Pick Tournament" Height="176.771" Width="464.873" ResizeMode="NoResize">
+        Title="Pick Tournament" Height="180.778" Width="403.279" ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" Text="dRmpIHLRpgfiepsGWcixpRrettoVeYmSqPw2RJcg" VerticalAlignment="Top" Width="370" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
@@ -20,7 +20,7 @@
         <Label x:Name="label" Content="Challonge API Key" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Select a tournament" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="370" DropDownOpened="comboBox_DropDownOpened"/>
-        <Button x:Name="button" Content="Accept" HorizontalAlignment="Left" Margin="374,117,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Button x:Name="button" Content="Accept" HorizontalAlignment="Left" Margin="305,117,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
     </Grid>
 </Window>

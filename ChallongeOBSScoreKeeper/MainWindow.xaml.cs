@@ -10,6 +10,12 @@ namespace ChallongeOBSScoreKeeper
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string player1;
+        private string player2;
+        private string round;
+        private int p1score = 0;
+        private int p2score = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -17,6 +23,7 @@ namespace ChallongeOBSScoreKeeper
 
         private void loadButton_Click(object sender, RoutedEventArgs e)
         {
+
             string endPoint = @"https://api.challonge.com/v1/tournaments/" + Window1.tournamentID + "/participants.json";
             var client = new RestClient(endPoint);
             var json = client.MakeRequest("?api_key="+Window1.apiKey);
@@ -47,9 +54,6 @@ namespace ChallongeOBSScoreKeeper
             var dataMatches = JsonConvert.DeserializeObject<List<Matches>>(json);
 
             var openMatches = new List<SingleMatch>();
-            string player1Name = "";
-            string player2Name = "";
-            string round = "Winner's";
 
             int finalRound = dataMatches[dataMatches.Count-1].match.round;
 
@@ -61,11 +65,11 @@ namespace ChallongeOBSScoreKeeper
                     {
                         if(dataMatches[i].match.player1_id.Equals(dataParticipants[j].Participant.id))
                         {
-                            player1Name = dataParticipants[j].Participant.name;
+                            this.player1 = dataParticipants[j].Participant.name;
                         }
                         else if (dataMatches[i].match.player2_id.Equals(dataParticipants[j].Participant.id))
                         {
-                            player2Name = dataParticipants[j].Participant.name;
+                            this.player2 = dataParticipants[j].Participant.name;
                         }
                     }
                     openMatches.Add(dataMatches[i].match);
@@ -73,22 +77,22 @@ namespace ChallongeOBSScoreKeeper
                     if (dataMatches[i].match.round == finalRound)
                     {
                         round = "Grand Finals";
-                        comboBox.Items.Add(round + ": " + player1Name + " vs. " + player2Name);
+                        comboBox.Items.Add(round + ": " + player1 + " vs. " + player2);
                     }
                     else if (dataMatches[i].match.round == finalRound*-1)
                     {
                         round = "Losers Finals";
-                        comboBox.Items.Add(round + ": " + player1Name + " vs. " + player2Name);
+                        comboBox.Items.Add(round + ": " + player1 + " vs. " + player2);
                     }
                     else if(dataMatches[i].match.round < 0)
                     {
-                        round = "Losers";
-                        comboBox.Items.Add(round + " Round " + Math.Abs(dataMatches[i].match.round) + ": " + player1Name + " vs. " + player2Name);
+                        round = "Losers Round" + Math.Abs(dataMatches[i].match.round);
+                        comboBox.Items.Add(round + ": " + player1 + " vs. " + player2);
                     }
                     else
                     {
-                        round = "Winners";
-                        comboBox.Items.Add(round + " Round " + Math.Abs(dataMatches[i].match.round) + ": " + player1Name + " vs. " + player2Name);
+                        round = "Winners Round" + Math.Abs(dataMatches[i].match.round);
+                        comboBox.Items.Add(round + ": " + player1 + " vs. " + player2);
                     }
                     
                 }
@@ -98,6 +102,14 @@ namespace ChallongeOBSScoreKeeper
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             new Window1().Show();
+        }
+
+        private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Player1NameBox.Text = player1;
+            Player2NameBox.Text = player2;
+            player1Score.Value = 0;
+            player2Score.Value = 0;
         }
     }
 
